@@ -36,6 +36,42 @@ def quick_sort(arr):
     return quick_sort(left) + middle + quick_sort(right)
 
 
+def merge_sort(arr):
+    """
+    Реализация сортировки слиянием (merge sort)
+    """
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    
+    return merge(left, right)
+
+
+def merge(left, right):
+    """
+    Вспомогательная функция для слияния двух отсортированных массивов
+    """
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    # Добавляем оставшиеся элементы
+    result.extend(left[i:])
+    result.extend(right[j:])
+    
+    return result
+
+
 def read_numbers_from_file(filename):
     """
     Чтение чисел из файла
@@ -69,9 +105,12 @@ def main():
     elif algorithm == 'quick':
         sort_func = quick_sort
         sort_name = "Быстрая сортировка"
+    elif algorithm == 'merge':
+        sort_func = merge_sort
+        sort_name = "Сортировка слиянием"
     else:
         print(f"Неизвестный алгоритм: {algorithm}")
-        print("Доступные алгоритмы: bubble, quick")
+        print("Доступные алгоритмы: bubble, quick, merge")
         sys.exit(1)
 
     try:
@@ -89,7 +128,7 @@ def main():
                 sort_func(numbers_copy)
                 result = numbers_copy
             else:
-                # Быстрая сортировка возвращает новый список
+                # Быстрая сортировка и сортировка слиянием возвращают новый список
                 result = sort_func(numbers)
                 
             print("Отсортированные числа:", result)
