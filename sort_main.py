@@ -8,13 +8,14 @@ import sys
 from bubble_sort import bubble_sort
 from quick_sort import quick_sort
 from merge_sort import merge_sort
+from insertion_sort import insertion_sort
 from utils import read_numbers_from_file
 
 
 def main():
     if len(sys.argv) != 3:
         print("Использование: python sort_main.py <алгоритм> <имя_файла>")
-        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка)")
+        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками)")
         sys.exit(1)
 
     algorithm = sys.argv[1].lower()
@@ -30,9 +31,12 @@ def main():
     elif algorithm == 'merge':
         sort_func = merge_sort
         sort_name = "Сортировка слиянием"
+    elif algorithm == 'insertion':
+        sort_func = insertion_sort
+        sort_name = "Сортировка вставками"
     else:
         print(f"Неизвестный алгоритм: {algorithm}")
-        print("Доступные алгоритмы: bubble, quick, merge")
+        print("Доступные алгоритмы: bubble, quick, merge, insertion")
         sys.exit(1)
 
     try:
@@ -50,7 +54,7 @@ def main():
                 sort_func(numbers_copy)
                 result = numbers_copy
             else:
-                # Быстрая сортировка и сортировка слиянием возвращают новый список
+                # Быстрая сортировка, сортировка слиянием и сортировка вставками возвращают новый список
                 result = sort_func(numbers)
                 
             print("Отсортированные числа:", result)
