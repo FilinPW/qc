@@ -13,12 +13,18 @@ python sort_main.py <алгоритм> <имя_файла>
 ```
 
 Где:
-- `<алгоритм>` - один из: `bubble`, `quick`, `merge`, `insertion`
+- `<алгоритм>` - один из: `bubble`, `quick`, `merge`, `insertion`, `all`
 - `<имя_файла>` - путь к файлу с числами для сортировки
 
-Пример:
+Для запуска всех алгоритмов последовательно с выводом времени выполнения каждого:
+```bash
+python sort_main.py all test_numbers.txt
+```
+
+Примеры:
 ```bash
 python sort_main.py bubble test_numbers.txt
+python sort_main.py all test_numbers.txt
 ```
 
 ## Файлы проекта
