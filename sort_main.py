@@ -6,10 +6,11 @@
 
 import sys
 import time
-from bubble_sort import bubble_sort
-from quick_sort import quick_sort
-from merge_sort import merge_sort
-from insertion_sort import insertion_sort
+from sorting_algorithms.bubble_sort import bubble_sort
+from sorting_algorithms.quick_sort import quick_sort
+from sorting_algorithms.merge_sort import merge_sort
+from sorting_algorithms.insertion_sort import insertion_sort
+from sorting_algorithms.selection_sort import selection_sort
 from utils import read_numbers_from_file
 
 
@@ -19,7 +20,8 @@ def run_all_algorithms(numbers):
         ('Пузырьковая сортировка', bubble_sort),
         ('Быстрая сортировка', quick_sort),
         ('Сортировка слиянием', merge_sort),
-        ('Сортировка вставками', insertion_sort)
+        ('Сортировка вставками', insertion_sort),
+        ('Сортировка выбором', selection_sort)
     ]
     
     print("Запуск всех алгоритмов сортировки последовательно...")
@@ -52,7 +54,7 @@ def main():
     if len(sys.argv) < 2:
         print("Использование: python sort_main.py <алгоритм> <имя_файла>")
         print("Или: python sort_main.py all <имя_файла> - для запуска всех алгоритмов")
-        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), all (все алгоритмы)")
+        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), selection (выбором), all (все алгоритмы)")
         sys.exit(1)
 
     algorithm = sys.argv[1].lower()
@@ -87,7 +89,7 @@ def main():
     if not filename:
         print("Использование: python sort_main.py <алгоритм> <имя_файла>")
         print("Или: python sort_main.py all <имя_файла> - для запуска всех алгоритмов")
-        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), all (все алгоритмы)")
+        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), selection (выбором), all (все алгоритмы)")
         sys.exit(1)
 
     # Выбор алгоритма
@@ -103,9 +105,12 @@ def main():
     elif algorithm == 'insertion':
         sort_func = insertion_sort
         sort_name = "Сортировка вставками"
+    elif algorithm == 'selection':
+        sort_func = selection_sort
+        sort_name = "Сортировка выбором"
     else:
         print(f"Неизвестный алгоритм: {algorithm}")
-        print("Доступные алгоритмы: bubble, quick, merge, insertion, all")
+        print("Доступные алгоритмы: bubble, quick, merge, insertion, selection, all")
         sys.exit(1)
 
     try:
