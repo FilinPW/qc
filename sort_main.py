@@ -52,13 +52,20 @@ def run_all_algorithms(numbers):
 
 def main():
     if len(sys.argv) < 2:
-        print("Использование: python sort_main.py <алгоритм> <имя_файла>")
+        print("Использование: python sort_main.py <алгоритм> <имя_файла> [имя_файла_для_сохранения]")
         print("Или: python sort_main.py all <имя_файла> - для запуска всех алгоритмов")
         print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), selection (выбором), all (все алгоритмы)")
+        print("Опционально: можно указать третий параметр - имя файла для сохранения отсортированных чисел")
         sys.exit(1)
 
     algorithm = sys.argv[1].lower()
     filename = sys.argv[2] if len(sys.argv) > 2 else None
+    output_filename = sys.argv[3] if len(sys.argv) > 3 else None
+    
+    # Проверяем, что опция сохранения не используется с алгоритмом 'all'
+    if algorithm == 'all' and output_filename:
+        print("Опция сохранения результата в файл не доступна при использовании алгоритма 'all'")
+        sys.exit(1)
     
     if algorithm == 'all':
         if not filename:
@@ -132,6 +139,16 @@ def main():
                 result = sort_func(numbers)
                 
             print("Отсортированные числа:", result)
+            
+            # Если указан файл для сохранения, записываем результат туда
+            if output_filename:
+                try:
+                    with open(output_filename, 'w') as f:
+                        for num in result:
+                            f.write(str(num) + '\n')
+                    print(f"Результат сохранен в файл: {output_filename}")
+                except Exception as e:
+                    print(f"Ошибка при сохранении в файл: {e}")
         else:
             print("В файле не найдено корректных чисел для сортировки.")
             

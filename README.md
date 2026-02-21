@@ -10,12 +10,13 @@
 ## Использование
 
 ```bash
-python sort_main.py <алгоритм> <имя_файла>
+python sort_main.py <алгоритм> <имя_файла> [имя_файла_для_сохранения]
 ```
 
 Где:
-- `<алгоритм>` - один из: `bubble`, `quick`, `merge`, `insertion`, `all`
+- `<алгоритм>` - один из: `bubble`, `quick`, `merge`, `insertion`, `selection`, `all`
 - `<имя_файла>` - путь к файлу с числами для сортировки
+- `[имя_файла_для_сохранения]` - необязательный параметр, имя файла для сохранения отсортированных чисел (недоступно при использовании алгоритма `all`)
 
 Для запуска всех алгоритмов последовательно с выводом времени выполнения каждого:
 ```bash
@@ -26,6 +27,7 @@ python sort_main.py all test_numbers.txt
 ```bash
 python sort_main.py bubble test_numbers.txt
 python sort_main.py all test_numbers.txt
+python sort_main.py quick test_numbers.txt sorted_numbers.txt
 ```
 
 ## Файлы проекта
