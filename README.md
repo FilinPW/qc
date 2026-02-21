@@ -36,6 +36,7 @@ python sort_main.py quick test_numbers.txt sorted_numbers.txt
 ## Файлы проекта
 
 - `sort_main.py` - основной скрипт для запуска сортировки
+- `sorting_algorithms/` - директория с реализациями алгоритмов сортировки
 - `bubble_sort.py` - реализация пузырьковой сортировки
 - `quick_sort.py` - реализация быстрой сортировки
 - `merge_sort.py` - реализация сортировки слиянием
