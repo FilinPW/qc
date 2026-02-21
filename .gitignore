@@ -1,4 +1,1 @@
-```
-# Test data directory
-test_data/
-```
+Nothing needs to be added to .gitignore since the modified files are all dataset text files in a test_data directory, which appear to be source data rather than build artifacts, dependencies, or temporary files.
