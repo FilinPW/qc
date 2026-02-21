@@ -11,6 +11,9 @@ from sorting_algorithms.quick_sort import quick_sort
 from sorting_algorithms.merge_sort import merge_sort
 from sorting_algorithms.insertion_sort import insertion_sort
 from sorting_algorithms.selection_sort import selection_sort
+from sorting_algorithms.heap_sort import heap_sort
+from sorting_algorithms.counting_sort import counting_sort
+from sorting_algorithms.radix_sort import radix_sort
 from utils import read_numbers_from_file
 
 
@@ -21,7 +24,10 @@ def run_all_algorithms(numbers):
         ('Быстрая сортировка', quick_sort),
         ('Сортировка слиянием', merge_sort),
         ('Сортировка вставками', insertion_sort),
-        ('Сортировка выбором', selection_sort)
+        ('Сортировка выбором', selection_sort),
+        ('Сортировка кучей', heap_sort),
+        ('Сортировка подсчётом', counting_sort),
+        ('Поразрядная сортировка', radix_sort)
     ]
     
     print("Запуск всех алгоритмов сортировки последовательно...")
@@ -54,7 +60,7 @@ def main():
     if len(sys.argv) < 2:
         print("Использование: python sort_main.py <алгоритм> <имя_файла> [имя_файла_для_сохранения]")
         print("Или: python sort_main.py all <имя_файла> - для запуска всех алгоритмов")
-        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), selection (выбором), all (все алгоритмы)")
+        print("Алгоритмы: bubble (пузырьком), quick (быстрая сортировка), merge (слиянием), insertion (вставками), selection (выбором), heap (кучей), counting (подсчётом), radix (поразрядная), all (все алгоритмы)")
         print("Опционально: можно указать третий параметр - имя файла для сохранения отсортированных чисел")
         sys.exit(1)
 
@@ -115,9 +121,18 @@ def main():
     elif algorithm == 'selection':
         sort_func = selection_sort
         sort_name = "Сортировка выбором"
+    elif algorithm == 'heap':
+        sort_func = heap_sort
+        sort_name = "Сортировка кучей"
+    elif algorithm == 'counting':
+        sort_func = counting_sort
+        sort_name = "Сортировка подсчётом"
+    elif algorithm == 'radix':
+        sort_func = radix_sort
+        sort_name = "Поразрядная сортировка"
     else:
         print(f"Неизвестный алгоритм: {algorithm}")
-        print("Доступные алгоритмы: bubble, quick, merge, insertion, selection, all")
+        print("Доступные алгоритмы: bubble, quick, merge, insertion, selection, heap, counting, radix, all")
         sys.exit(1)
 
     try:
